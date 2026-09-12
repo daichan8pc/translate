@@ -13,15 +13,27 @@
 
 print("=== スクリプト起動確認 ===", flush=True)
 
-import csv
-import os
+print("=== スクリプト起動確認 ===", flush=True)
 
-import torch 
+import csv
+print("csv OK", flush=True)
+import os
+print("os OK", flush=True)
+
+import torch
+print("torch OK", flush=True)
 
 from openai import OpenAI
+print("openai OK", flush=True)
+
 from pyannote.audio import Pipeline
+print("pyannote OK", flush=True)
+
 from pydub import AudioSegment
+print("pydub OK", flush=True)
+
 from dotenv import load_dotenv
+print("dotenv OK", flush=True)
 
 load_dotenv()   # .env を読み込み、os.environ に反映
 
