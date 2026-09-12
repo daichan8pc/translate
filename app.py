@@ -65,4 +65,71 @@ def load_diarization_pipeline() -> Pipeline:
     pipeline.to(torch.device("CPU"))
     return pipeline
 
+def format_timestamp(seconds: float) -> str:
+    """秒数をmm:ss.s形式に整形"""
+    minutes = int(seconds // 60)
+    remainder = seconds % 60
+    return f"{minutes:02d}:{remainder:04.1f}"
 
+def transcribe_segment(client: OpenAI, chunk: AudioSegment, language: str,
+                       temp_path: str) -> str:
+    """音声チャンク1件をWhisper APIで文字起こしする"""
+    chunk.export(temp_path, format="wav")
+    with open(temp_path, "rb") as audio_file:
+        transcript = client.audio.transcriptions.create(
+            model="Whisper-1",
+            file=audio_file,
+            language=language,  #言語固定で制度を最大化
+        )
+    return transcript.text.strip()
+    
+def transcribe_to_csv(audio_path: str,
+                      output_csv_path: str = "transcription_result.csv") -> None:
+    """音声ファイル全体を処理し、結果をCSVに書き出す"""
+    client = OpenAI(api_key=OPENAI_API_KEY)
+    temp_chunk_path = "temp_chunk.wav"
+    
+    print("1. 話者分離モデルをロード中...")
+    diarization_pipeline = load_diarization_pipeline()
+    
+    printf("2. 音声解析 （話者分離） を実行中...")
+    diarization = diarization_pipeline(audio_path, num_speakers=NUM_SPEAKERS)
+    
+    print("3. 音声の切り出しと精密文字起こしを開始...")
+    audio = AudioSegment.from_file(audio_path)
+    
+    with open(output_csv_path, mode="w", newline="", encoding="utf-8-sig") as f:
+        writer = csv.writer(f)
+        writer.writerow(CSV_HEADER)
+        
+        for turn, _, speaker in diarization.itertracks(yield_label=True):
+            start_ms = int(turn.start * 1000)
+            end_ms = int(turn.end * 1000)
+            
+            if end_ms - start_ms < MIN_SEGMENT_MS:
+                continue
+            
+            language = SPEAKER_LANG_MAP.get(speaker, "pt")
+            chunk = audio[start_ms:end_ms]
+            text = transcribe_segment(client, chunk, language, temp_chunk_path)
+            
+            if not text:
+                continue
+            
+            start_formatted = format_timestamp(turn.start)
+            end_formatted = format_timestamp(turn.end)
+            
+            # translated_text は手動貼り付け用に空欄のまま出力
+            writer.writerow(
+                [start_formatted, end_formatted, speaker, language, text, ""]
+            )
+            print(f"[{start_formatted} - {end_formatted}] {speaker}({language}): {text}")
+            
+            if os.path.exists(temp_chunk_path):
+                os.remove(temp_chunk_path)
+                
+            print("f\n完了: 結果を '{output_csv_path}' に保存しました。")
+            
+    if __name__ == "__main__":
+        TARGET_AUIDO = "test_audio.wav"
+        transcribe_to_csv(TARGET_AUIDO)
