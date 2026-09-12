@@ -18,6 +18,7 @@ import torch
 from openai import OpenAI
 from pyannote.audio import Pipeline
 from pydub import AudioSegment
+from dotenv import load_dotenv
 
 # ===========================
 # 設定
@@ -26,8 +27,6 @@ from pydub import AudioSegment
 # APIキーはハードコードせず環境変数から取得
 OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
 HF_TOKEN = os.environ["HF_TOKEN"]
-
-from dotenv import load_dotenv
 
 load_dotenv()   # .env を読み込み、os.environ に反映
 
