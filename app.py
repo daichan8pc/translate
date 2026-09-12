@@ -115,7 +115,7 @@ def transcribe_to_csv(audio_path: str,
         writer = csv.writer(f)
         writer.writerow(CSV_HEADER)
 
-        for turn, _, speaker in diarization.itertracks(yield_label=True):
+        for turn, _, speaker in diarization.speaker_diarization.itertracks(yield_label=True):
             start_ms = int(turn.start * 1000)
             end_ms = int(turn.end * 1000)
 
@@ -146,5 +146,5 @@ def transcribe_to_csv(audio_path: str,
 
 
 if __name__ == "__main__":
-    TARGET_AUDIO = "sound/test.mp3"
+    TARGET_AUDIO = "sound/1.wav"
     transcribe_to_csv(TARGET_AUDIO)
