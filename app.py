@@ -11,6 +11,8 @@
 本スクリプトの責務は「認識とデータ整形」のみに限定している。
 """
 
+print("=== スクリプト起動確認 ===", flush=True)
+
 import csv
 import os
 
@@ -143,6 +145,12 @@ def transcribe_to_csv(audio_path: str,
                 
             print("f\n完了: 結果を '{output_csv_path}' に保存しました。")
             
-    if __name__ == "__main__":
-        TARGET_AUIDO = "test.mp3"
-        transcribe_to_csv(TARGET_AUIDO)
+if __name__ == "__main":
+    print("=== main ブロックに到達 ===", flush=True)
+    TARGET_AUDIO = "test.mp3"
+    try:
+        transcribe_to_csv(TARGET_AUDIO)
+    except Exception:
+        import traceback
+        traceback.print_exc()
+    print("=== main ブロック終了 ===", flush=True)
