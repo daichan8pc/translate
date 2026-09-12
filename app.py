@@ -147,7 +147,7 @@ def transcribe_to_csv(audio_path: str,
             
 if __name__ == "__main":
     print("=== main ブロックに到達 ===", flush=True)
-    TARGET_AUDIO = "test.mp3"
+    TARGET_AUDIO = "sound/test.mp3"
     try:
         transcribe_to_csv(TARGET_AUDIO)
     except Exception:
