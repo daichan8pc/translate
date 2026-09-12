@@ -66,8 +66,14 @@ def load_diarization_pipeline() -> Pipeline:
     torch.set_num_threads(CPU_THREADS)
     pipeline = Pipeline.from_pretrained(
         "pyannote/speaker-diarization-3.1",
-        use_auth_token=HF_TOKEN,
+        token=HF_TOKEN,
     )
+    if pipeline is None:
+        raise RuntimeError(
+            "パイプラインのロードに失敗しました。HF_TOKENが正しいか、"
+            "モデルページの利用条件に同意済みかを確認してください。"
+        )
+    
     pipeline.to(torch.device("CPU"))
     return pipeline
 
