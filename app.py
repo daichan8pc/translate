@@ -27,6 +27,13 @@ from pydub import AudioSegment
 OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
 HF_TOKEN = os.environ["HF_TOKEN"]
 
+from dotenv import load_dotenv
+
+load_dotenv()   # .env を読み込み、os.environ に反映
+
+OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
+HF_TOKEN = os.environ["HF_TOKEN"]
+
 # 話者 -> 言語 のマッピング （テスト結果に応じて調整）
 SPEAKER_LANG_MAP = {
     "SPEAKER_00": "ja", #   日本語話者
