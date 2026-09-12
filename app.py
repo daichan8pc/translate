@@ -92,7 +92,7 @@ def transcribe_to_csv(audio_path: str,
     print("1. 話者分離モデルをロード中...")
     diarization_pipeline = load_diarization_pipeline()
     
-    printf("2. 音声解析 （話者分離） を実行中...")
+    print("2. 音声解析 （話者分離） を実行中...")
     diarization = diarization_pipeline(audio_path, num_speakers=NUM_SPEAKERS)
     
     print("3. 音声の切り出しと精密文字起こしを開始...")
@@ -131,5 +131,5 @@ def transcribe_to_csv(audio_path: str,
             print("f\n完了: 結果を '{output_csv_path}' に保存しました。")
             
     if __name__ == "__main__":
-        TARGET_AUIDO = "test_audio.wav"
+        TARGET_AUIDO = "test.mp3"
         transcribe_to_csv(TARGET_AUIDO)
