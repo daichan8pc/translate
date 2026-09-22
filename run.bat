@@ -18,5 +18,5 @@ if errorlevel 1 (
 
 echo.
 echo 処理が完了しました。
-echo デスクトップの *_result.csv を確認してください。
+echo translate\results フォルダ内の *_result.csv を確認してください。
 pause

@@ -10,13 +10,6 @@ SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_DIR="$(cd -- "$SCRIPT_DIR/.." && pwd)"
 WORK_DIR="$HOME/translate_work"
 
-WINDOWS_USERPROFILE="$(cmd.exe /c echo %USERPROFILE% 2>/dev/null | tr -d '\r' || true)"
-if [ -n "$WINDOWS_USERPROFILE" ] && command -v wslpath >/dev/null 2>&1; then
-    DESKTOP_DIR="$(wslpath -u "$WINDOWS_USERPROFILE")/Desktop"
-else
-    DESKTOP_DIR="$(dirname -- "$PROJECT_DIR")"
-fi
-
 copy_project_to_work_dir() {
     if [ ! -f "$PROJECT_DIR/.env" ]; then
         echo "'$PROJECT_DIR/.env' が見つかりません。配布フォルダに .env を配置してください。"
@@ -41,7 +34,7 @@ copy_project_to_work_dir() {
     cp "$PROJECT_DIR/.env" "$WORK_DIR/.env"
 }
 
-move_results_to_desktop() {
+move_results_to_results_dir() {
     local result_files=()
     mapfile -t result_files < <(find "$WORK_DIR" -maxdepth 1 -type f -name '*_result.csv' -print)
 
@@ -50,9 +43,10 @@ move_results_to_desktop() {
         return 1
     fi
 
-    mkdir -p "$DESKTOP_DIR"
-    mv "${result_files[@]}" "$DESKTOP_DIR/"
-    echo "CSVをWindowsのデスクトップへ移動しました: $DESKTOP_DIR"
+    RESULTS_DIR="$PROJECT_DIR/results"
+    mkdir -p "$RESULTS_DIR"
+    mv "${result_files[@]}" "$RESULTS_DIR/"
+    echo "CSVを配布フォルダの results へ移動しました: $RESULTS_DIR"
 }
 
 echo "============================================"
@@ -108,6 +102,6 @@ echo "============================================"
 python3 app.py
 
 echo ""
-move_results_to_desktop
+move_results_to_results_dir
 rm -rf "$WORK_DIR"
-echo "完了しました。Windowsのデスクトップにある *_result.csv を確認してください。"
+echo "完了しました。results フォルダ内の *_result.csv を確認してください。"
