@@ -4,3 +4,4 @@ torchaudio
 openai
 pyannote.audio
 pydub
+pyaudioop
