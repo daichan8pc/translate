@@ -1,0 +1,6 @@
+python-dotenv
+torch
+torchaudio
+openai
+pyannote.audio
+pydub

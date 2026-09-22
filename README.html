@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&#x97f3;&#x58f0;&#x6587;&#x5b57;&#x8d77;&#x3053;&#x3057;&#x30c4;&#x30fc;&#x30eb;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <span id="markdown-mermaid" aria-hidden="true" data-config="{&quot;darkModeTheme&quot;:&quot;vscode&quot;,&quot;lightModeTheme&quot;:&quot;vscode&quot;,&quot;maxTextSize&quot;:50000,&quot;clickDrag&quot;:&quot;alt&quot;,&quot;showControls&quot;:&quot;onHoverOrFocus&quot;,&quot;resizable&quot;:true,&quot;maxHeight&quot;:&quot;&quot;}"></span>
+				<style>
+    /* フォント・行間・余白の調整 */
+    body{
+        font-family: "Segoe UI", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+        line-height: 1.7;
+        color: #333333;
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    /* 見出しデザイン */
+    h1 {
+        color: #1a365d;
+        border-bottom: 3px solid #2b6cb0;
+        padding-bottom: 8px;
+    }
+    h2 {
+        color: #2c5282;
+        border-bottom: 1px solid #e2e8f0;
+        padding-bottom: 5px;
+        margin-top: 2em;
+    }
+
+    /* 警告・注意ボックス */
+    .alert-warning {
+        background-color: #fffaf0;
+        border-left: 5px solid #dd6b20;
+        color: #9c4221;
+        padding: 12px 16px;
+        margin: 15px 0;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    /* コマンド確認コメント */
+    .cmd-comment {
+        color: #2f855a;
+        font-weight: bold;
+    }
+
+    /* 赤字強調 */
+    .text-danger {
+        color: #e53e3e;
+        font-weight: bold;
+    }
+
+    /* 処理結果・手順 */
+    .text-info {
+        color: #2b6cb0;
+        font-weight: bold;
+    }
+
+    /* リストや箇条書きの装飾 */
+    ul, ol {
+        padding-left: 24px;
+    }
+    li {
+        margin-bottom: 6px;
+    }
+
+    /* インラインコードの背景 */
+    code {
+        background-color: #edf2f7;
+        color: #805ad5;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-family: Consolas, Monaco, 'Courier New', monospace;
+    }
+
+</style>
+<h1 id="音声文字起こしツール">音声文字起こしツール</h1>
+<h2 id="はじめに">はじめに</h2>
+<p>このツールは、指定された音声フォルダ内の音声ファイル（<code>.wav</code>形式のみ）を自動で文字起こしし、Excelで開けるCSVファイルを出力します。</p>
+<hr>
+<h2 id="1-音声ファイルの配置">1. 音声ファイルの配置</h2>
+<p>ICレコーダーから取り出した音声を、<code>app.py</code> と同じフォルダにある <code>sound</code> フォルダに入れます。</p>
+<ul>
+<li>例: <code>1.wav</code>, <code>2.wav</code>, <code>3.wav</code></li>
+<li>ファイル名は <code>1.wav</code>, <code>2.wav</code>, <code>3.wav</code> を基本にしてください</li>
+<li>新規録音があれば <code>3.wav</code> へ名前を変更してから実行してください</li>
+</ul>
+<hr>
+<h2 id="2-env-ファイルの配置">2. <code>.env</code> ファイルの配置</h2>
+<p>プロジェクト直下に <code>.env</code> ファイルがあることを確認してください。</p>
+<p>内容は次のような形式です。</p>
+<pre><code class="language-env">OPENAI_API_KEY=ここにOpenAIのAPIキーを貼り付け
+HF_TOKEN=ここにHuggingFaceのトークンを貼り付け
+</code></pre>
+<blockquote>
+<p>Hugging Face 側の <code>pyannote</code> モデル利用条件に同意していない場合、話者分離のロードに失敗します。</p>
+</blockquote>
+<hr>
+<h2 id="3-実行手順">3. 実行手順</h2>
+<ol>
+<li>旧 <code>translate</code> フォルダを削除</li>
+<li>zip化されたフォルダをデスクトップ上に展開し、エクスプローラ上で右クリック <code>ターミナルで開く</code> を選択</li>
+<li>ターミナルが開かれるので、以下を実行してください。</li>
+</ol>
+<pre><code class="language-bash"><span class="hljs-comment"># 入力部がPS C:\Users\higas\Desktop\translate であることを確認</span>
+wsl
+<span class="hljs-comment"># 入力部がkeiko@SK-PC:/mnt/c/Users/higas/Desktop/translate$ になっていることを確認</span>
+./setup.sh
+
+</code></pre>
+<hr>
+<h2 id="4-実行時間と注意">4. 実行時間と注意</h2>
+<ul>
+<li>処理にはかなり時間がかかります</li>
+<li>PCの負荷が高くなるため、そのまま放置して問題ありませんが、PCの自動スリープ設定をオフにしてください</li>
+<li>1時間前後かかる場合があります</li>
+</ul>
+<hr>
+<h2 id="5-出力結果">5. 出力結果</h2>
+<p>処理が終わると、<code>app.py</code> と同じフォルダに以下のCSVが生成されます。</p>
+<ul>
+<li><code>1_result.csv</code></li>
+<li><code>2_result.csv</code></li>
+<li><code>3_result.csv</code></li>
+</ul>
+<p>CSVを右クリック→ <code>プログラムから開く</code> → <code>Excel</code> で開き、ポルトガル語の行を選んでDeepLへ貼り付けて翻訳してください。</p>
+
+            <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+            
+        </body>
+        </html>

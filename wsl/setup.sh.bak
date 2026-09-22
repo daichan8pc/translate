@@ -1,0 +1,79 @@
+#!/usr/bin/env bash
+# ============================================================
+# セットアップ & 実行スクリプト
+# author:Daiki Suzuki
+# ============================================================
+
+set -e  # エラーが起きたら即座に停止
+
+echo "============================================"
+echo " 1. OSパッケージのインストール "
+echo "============================================"
+echo "この後パスワードの入力を求められます。"
+echo "パスワードは wsl設定情報.txt に記載されています。"
+
+sudo apt update
+sudo apt install -y ffmpeg python3 python3-venv python3-pip
+
+echo ""
+echo "============================================"
+echo " 2. Python仮想環境の作成"
+echo "============================================"
+
+if [ ! -d "venv" ]; then
+    python3 -m venv venv
+    echo "venv を新規作成しました。"
+else
+    echo "venv は既に存在するため作成をスキップします。"
+fi
+
+# 以降、仮想環境内のpip/pythonを使う
+source venv/bin/activate
+
+echo ""
+echo "============================================"
+echo " 3. 必要なPythonパッケージのインストール"
+echo "============================================"
+
+if [ ! -f "requirements.txt" ]; then
+    echo "requirements.txt が見つかりません。app.py と同じフォルダに置いてください。"
+    exit 1
+fi
+
+pip install --upgrade pip
+pip install -r requirements.txt
+
+echo ""
+echo "============================================"
+echo " 4. .env ファイルの確認"
+echo "============================================"
+
+if [ ! -f ".env" ]; then
+    cat <<EOF > .env
+OPENAI_API_KEY=ここにOpenAIのAPIキーを貼り付け
+HF_TOKEN=ここにHuggingFaceのトークンを貼り付け
+EOF
+    echo ".env のひな形を作成しました。"
+    echo ""
+    echo "★重要★"
+    echo "1. .env を開いて OPENAI_API_KEY と HF_TOKEN を実際の値に書き換えてください。"
+    echo "2. 以下のページをブラウザで開き、Hugging Faceアカウントで利用条件に同意してください（初回のみ）。"
+    echo "   - https://hf.co/pyannote/speaker-diarization-3.1"
+    echo "   - https://hf.co/pyannote/segmentation-3.0"
+    echo "   - https://hf.co/pyannote/speaker-diarization-community-1"
+    echo ""
+    echo "上記2点が完了したら、もう一度 ./setup.sh を実行してください。"
+    exit 0
+fi
+
+echo ".env を確認しました。処理を続行します。"
+
+echo ""
+echo "============================================"
+echo " 5. 文字起こしパイプラインの実行"
+echo "============================================"
+
+python3 app.py
+
+echo ""
+echo "完了しました。*_result.csv を確認してください。"
