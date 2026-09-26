@@ -27,9 +27,7 @@ OPENAI_API_KEY=ここにOpenAIのAPIキーを貼り付け
 HF_TOKEN=ここにHuggingFaceのトークンを貼り付け
 ```
 
-<div class="alert-box">
-    Hugging Face 側の `pyannote` モデル利用条件に同意していない場合、話者分離のロードに失敗します。
-</div>
+> Hugging Face 側の `pyannote` モデル利用条件に同意していない場合、話者分離のロードに失敗します。
 
 ---
 
